@@ -1,14 +1,14 @@
-# Use a base image with Java and Alpine Linux
-FROM adoptopenjdk:17-jre-hotspot-alpine
+# Use a base image with JDK 17
+FROM openjdk:17-jdk
 
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the executable JAR file into the container
-COPY target/jenkinpipeline.jar /app/jenkinpipeline.jar
+# Copy the compiled JAR file into the container
+COPY target/jenkinpipeline.jar app.jar
 
-# Expose the port on which your application will run (if needed)
-EXPOSE 8080
+# Expose the port your application is listening on (replace 8080 with the actual port)
+EXPOSE 8081
 
-# Set the command to run your application when the container starts
-CMD ["java", "-jar", "/app/your-application.jar"]
+# Run the application when the container starts
+CMD ["java", "-jar", "app.jar"]
